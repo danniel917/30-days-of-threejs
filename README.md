@@ -1,9 +1,8 @@
 # 30 Days of Three.js
 
-A 30-day challenge to learn [Three.js](https://threejs.org/) by building one small
-WebGL scene every day — from basic geometry and lighting through materials,
-animation and shaders. Each day is a self-contained experiment you can open and
-play with.
+A personal challenge — 30 days of learning [Three.js](https://threejs.org/),
+one WebGL scene at a time. This repo tracks my progress as I work through
+geometry, lighting, materials, animation and shaders.
 
 **Live:** https://danniel917.github.io/30-days-of-threejs/
 
