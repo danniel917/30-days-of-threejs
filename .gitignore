@@ -43,4 +43,7 @@ test-results/
 playwright-report/
 *.log
 
+# ---- Claude Code ----
+.claude/
+
 # NOTE: do NOT ignore .nojekyll — GitHub Pages needs it committed.

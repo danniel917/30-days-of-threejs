@@ -33,8 +33,8 @@ const loader = new THREE.TextureLoader();
 const geometry = new THREE.IcosahedronGeometry(2, 16);
 
 const material = new THREE.MeshStandardMaterial({
-  map: loader.load('./textures/earth-day-8k.jpg'),
-  normalMap: loader.load('./textures/earth-normal-8k.jpg')
+  map: loader.load('./textures/earth-day-4k.jpg'),
+  normalMap: loader.load('./textures/earth-normal-4k.jpg')
 });
 material.map.colorSpace = THREE.SRGBColorSpace;
 
@@ -42,7 +42,7 @@ const earthMesh = new THREE.Mesh(geometry, material);
 earthGroup.add(earthMesh);
 
 const lightMaterial = new THREE.MeshBasicMaterial({
-    map: loader.load('./textures/earth-night-8k.jpg'),
+    map: loader.load('./textures/earth-night-4k.jpg'),
     blending: THREE.AdditiveBlending,
 });
 lightMaterial.map.colorSpace = THREE.SRGBColorSpace;
@@ -52,7 +52,7 @@ lightMesh.scale.setScalar(1.001);
 earthGroup.add(lightMesh);
 
 const cloudMaterial = new THREE.MeshStandardMaterial({
-    map: loader.load('./textures/earth-clouds-8k.jpg'),
+    map: loader.load('./textures/earth-clouds-4k.jpg'),
     blending: THREE.AdditiveBlending,
 });
 cloudMaterial.map.colorSpace = THREE.SRGBColorSpace;
