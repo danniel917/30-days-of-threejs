@@ -11,6 +11,7 @@ geometry, lighting, materials, animation and shaders.
 | Day | Scene | Description | Live |
 |-----|-------|-------------|------|
 | 01 | Icosahedron with Spotlight | Flat-shaded icosahedron with a translucent wireframe overlay, lit by an animated spotlight orbiting the shape, plus a hemisphere fill light and clamped orbit controls. | [View](https://danniel917.github.io/30-days-of-threejs/day-01/) |
+| 02 | Earth with Clouds and City Lights | Four layered shells on a 23.4° tilted axis — 8k day map with a normal map for terrain relief, additive night-side city lights, a drifting cloud layer, and a Fresnel shader for the atmospheric rim glow, over a 5000-star field. | [View](https://danniel917.github.io/30-days-of-threejs/day-02/) |
 
 ## Structure
 
