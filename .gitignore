@@ -47,3 +47,6 @@ playwright-report/
 .claude/
 
 # NOTE: do NOT ignore .nojekyll — GitHub Pages needs it committed.
+
+# ---- Local preview recordings ----
+*.webm
