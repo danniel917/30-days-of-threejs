@@ -88,7 +88,7 @@ camera.add(spotLight);
 camera.add(spotLight.target);
 spotLight.target.position.set(0, 0, -1);
 const boxes = [];
-const numBoxes = 15;
+const numBoxes = 25;
 const boxSize = 0.035;
 const FADE_NEAR = 0.05;
 const FADE_FAR = 0.35;
@@ -104,8 +104,8 @@ const shapes = [
 for (let index = 0; index < numBoxes; index++) {
   const progress = (index / numBoxes + Math.random() * 0.1) % 1;
   const position = curve.getPointAt(progress);
-  position.x + Math.random() - 0.4;
-  position.z + Math.random() - 0.4;
+  position.x += Math.random() - 0.4;
+  position.z += Math.random() - 0.4;
 
   const rotation = new THREE.Vector3(
     Math.random() * Math.PI,
