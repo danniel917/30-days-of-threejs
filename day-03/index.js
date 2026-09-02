@@ -87,22 +87,22 @@ const spotLight = new THREE.SpotLight(0xffa200, 8, 1.5, Math.PI / 12, 0.2, 1);
 camera.add(spotLight);
 camera.add(spotLight.target);
 spotLight.target.position.set(0, 0, -1);
-const boxes = [];
-const numBoxes = 25;
-const boxSize = 0.035;
+const shapes = [];
+const numShapes = 25;
+const shapeSize = 0.035;
 const FADE_NEAR = 0.05;
 const FADE_FAR = 0.35;
 
-const shapes = [
-  new THREE.BoxGeometry(boxSize, boxSize, boxSize),
-  new THREE.IcosahedronGeometry(boxSize, 0),
-  new THREE.TetrahedronGeometry(boxSize),
-  new THREE.OctahedronGeometry(boxSize),
-  new THREE.TorusGeometry(boxSize, boxSize * 0.4, 8, 12),
+const shapeGeometries = [
+  new THREE.BoxGeometry(shapeSize, shapeSize, shapeSize),
+  new THREE.IcosahedronGeometry(shapeSize, 0),
+  new THREE.TetrahedronGeometry(shapeSize),
+  new THREE.OctahedronGeometry(shapeSize),
+  new THREE.TorusGeometry(shapeSize, shapeSize * 0.4, 8, 12),
 ];
 
-for (let index = 0; index < numBoxes; index++) {
-  const progress = (index / numBoxes + Math.random() * 0.1) % 1;
+for (let index = 0; index < numShapes; index++) {
+  const progress = (index / numShapes + Math.random() * 0.1) % 1;
   const position = curve.getPointAt(progress);
   position.x += Math.random() - 0.4;
   position.z += Math.random() - 0.4;
@@ -115,17 +115,18 @@ for (let index = 0; index < numBoxes; index++) {
 
   // const color = new THREE.Color().setHSL(0.7 - progress, 1, 0.5);
   const color = new THREE.Color(0xffffff);
-  const boxMaterial = new THREE.MeshStandardMaterial({
+  const shapeMaterial = new THREE.MeshStandardMaterial({
     color,
     transparent: true,
   });
 
-  const geometry = shapes[Math.floor(Math.random() * shapes.length)];
-  const box = new THREE.Mesh(geometry, boxMaterial);
-  box.position.copy(position);
-  box.rotation.set(rotation.x, rotation.y, rotation.z);
-  scene.add(box);
-  boxes.push(box);
+  const geometry =
+    shapeGeometries[Math.floor(Math.random() * shapeGeometries.length)];
+  const shape = new THREE.Mesh(geometry, shapeMaterial);
+  shape.position.copy(position);
+  shape.rotation.set(rotation.x, rotation.y, rotation.z);
+  scene.add(shape);
+  shapes.push(shape);
 }
 
 function updateCameraPosition() {
@@ -140,11 +141,11 @@ function updateCameraPosition() {
 function animate() {
   requestAnimationFrame(animate);
   updateCameraPosition();
-  boxes.forEach((box) => {
-    box.rotation.x += 0.02;
-    box.rotation.y += 0.02;
-    const distance = camera.position.distanceTo(box.position);
-    box.material.opacity = THREE.MathUtils.smoothstep(
+  shapes.forEach((shape) => {
+    shape.rotation.x += 0.02;
+    shape.rotation.y += 0.02;
+    const distance = camera.position.distanceTo(shape.position);
+    shape.material.opacity = THREE.MathUtils.smoothstep(
       distance,
       FADE_NEAR,
       FADE_FAR,
