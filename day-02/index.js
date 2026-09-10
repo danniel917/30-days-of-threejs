@@ -6,6 +6,7 @@ import {getFresnelMat} from './src/getFresnelMat.js';
 const width = window.innerWidth;
 const height = window.innerHeight;
 const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(width, height);
 document.body.appendChild(renderer.domElement);
 
@@ -17,10 +18,9 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 camera.position.z = 5;
 
 const scene = new THREE.Scene();
-// scene.background = new THREE.Color(0x1b1b1b);
 
 const controls = new OrbitControls(camera, renderer.domElement);
-controls.minDistance = 3;
+controls.minDistance = 5;
 controls.maxDistance = 12;
 controls.enableDamping = true;
 
@@ -32,17 +32,21 @@ const loader = new THREE.TextureLoader();
 
 const geometry = new THREE.IcosahedronGeometry(2, 16);
 
-const material = new THREE.MeshStandardMaterial({
-  map: loader.load('./textures/earth-day-4k.jpg'),
-  normalMap: loader.load('./textures/earth-normal-4k.jpg')
-});
-material.map.colorSpace = THREE.SRGBColorSpace;
+const earthMaterial = new THREE.MeshStandardMaterial({
+  map: loader.load('./textures/compressed/2k_earth_daymap.jpg'),
+  normalMap: loader.load('./textures/compressed/2k_earth_normal_map.jpg'),
+  metalnessMap: loader.load('./textures/compressed/2k_earth_specular_soft.jpg'),
+  metalness: 1,
+  roughness: 0.7
 
-const earthMesh = new THREE.Mesh(geometry, material);
+});
+earthMaterial.map.colorSpace = THREE.SRGBColorSpace;
+
+const earthMesh = new THREE.Mesh(geometry, earthMaterial);
 earthGroup.add(earthMesh);
 
 const lightMaterial = new THREE.MeshBasicMaterial({
-    map: loader.load('./textures/earth-night-4k.jpg'),
+    map: loader.load('./textures/compressed/2k_earth_nightmap.jpg'),
     blending: THREE.AdditiveBlending,
 });
 lightMaterial.map.colorSpace = THREE.SRGBColorSpace;
@@ -52,10 +56,10 @@ lightMesh.scale.setScalar(1.001);
 earthGroup.add(lightMesh);
 
 const cloudMaterial = new THREE.MeshStandardMaterial({
-    map: loader.load('./textures/earth-clouds-4k.jpg'),
-    blending: THREE.AdditiveBlending,
+  color: 0xffffff,
+    alphaMap: loader.load('./textures/compressed/2k_earth_clouds.jpg'),
+    transparent: true,
 });
-cloudMaterial.map.colorSpace = THREE.SRGBColorSpace;
 
 const cloudMesh = new THREE.Mesh(geometry, cloudMaterial);
 cloudMesh.scale.setScalar(1.002);
@@ -66,7 +70,7 @@ const glowMesh = new THREE.Mesh(geometry, fresnelMaterial);
 glowMesh.scale.setScalar(1.003);
 earthGroup.add(glowMesh);
 
-const stars = getStarfield({ numStars: 5000 });
+const stars = getStarfield({ numStars: 10000 });
 scene.add(stars);
 
 const sunLight = new THREE.DirectionalLight(0xffffff);
