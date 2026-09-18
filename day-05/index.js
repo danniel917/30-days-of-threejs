@@ -180,11 +180,11 @@ addLightControls(
 
 // The only light that moves on its own. It drifts around under the shapes on
 // two overlapping waves, so its path never repeats the same loop twice.
-// Sitting above the floor rather than under it. A light below the floor still
-// casts shadows, they just go off into the dark where nothing is there to
-// catch them. Lifted up here, its shadows land where they can be seen.
+// It sits below the floor, so it lights the shapes from underneath. It still
+// casts a shadow, there is just nothing under there to catch it. Lift it above
+// the floor with the slider in the panel and the shadows appear.
 const pointLight = new THREE.PointLight(colours.point, 5);
-pointLight.position.set(-1, 1.5, 1);
+pointLight.position.set(-1, -1, 1);
 // A point light throws in every direction, so its shadow is taken through the
 // six faces of a cube around it. Near has to stay small, or surfaces close to
 // the bulb fall out of range and lose their shadow.
