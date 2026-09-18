@@ -14,6 +14,7 @@ work through shapes, lighting, textures, movement and effects.
 | 02 | The Earth with Clouds and City Lights | The Earth, tilted the same way the real one is, built from a few see through layers stacked on top of each other. A photo of the surface, city lights that switch on across the night side, clouds drifting slowly over the top, and a soft blue glow around the edge. Thousands of stars sit behind it. | [View](https://danniel917.github.io/30-days-of-threejs/day-02/) |
 | 03 | Flying Through a Tunnel | A ride through a glowing tunnel that loops back on itself, so it never ends. The camera follows a curved path with a light attached to it, lighting up the walls as it goes. Small shapes float along the way and fade out just as you reach them. | [View](https://danniel917.github.io/30-days-of-threejs/day-03/) |
 | 04 | 3D Text in a Field of Donuts | The words "Hello Three.js" standing in the middle of the scene as solid letters with real thickness and softened edges, surrounded by a hundred donuts scattered at random sizes and angles. Everything is shaded from a single photo of a lit sphere, so there is not one light in the scene. Drag to look around it and scroll to move closer. | [View](https://danniel917.github.io/30-days-of-threejs/day-04/) |
+| 05 | Three Shapes Under Eight Lights | A sphere, a cube and a donut turning slowly on a floor, with eight lights on them at once: yellow coming up from underneath, magenta from behind, orange from the front, a green bulb drifting about below them, and three spotlights. Nearly every one of them throws its own soft shadow across the floor. A panel in the corner opens each light up, so you can move it, recolour it, dim it, or switch on a marker showing where it sits. Drag to look around and scroll to move closer. | [View](https://danniel917.github.io/30-days-of-threejs/day-05/) |
 
 ## Structure
 
@@ -29,11 +30,14 @@ Each day lives in its own folder and stands on its own. It has its own
 │   └── index.js
 ├── day-02/
 ├── day-03/
-└── day-04/ ...
+├── day-04/
+└── day-05/ ...
 ```
 
 Because every day carries its own importmap, a later day can use a different
-version of Three.js without breaking any of the earlier ones.
+version of Three.js without breaking any of the earlier ones, or pull in a
+library the other days do not have. Day 05 does exactly that: it adds `lil-gui`
+for its control panel, and days 01 to 04 are untouched by it.
 
 ## Running locally
 
